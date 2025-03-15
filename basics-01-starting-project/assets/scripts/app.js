@@ -6,9 +6,45 @@ let currentResult = defaultResult; // global scope value
 // let calculationDescription = `( ${defaultResult} + 10) * 3 / 2 - 1`;
 
 // This function takes the input from the user taken from the input field and adds the currentResult value to it
+
+function getUserInput() {
+  return parseInt(userInput.value);
+}
+
+function createAndWriteOutput(operator, resultBefore, calcNumber) {
+  const calcDescription = `${resultBefore} ${operator} ${calcNumber}`;
+  outputResult(currentResult, calcDescription);
+}
+
 function add() {
-  currentResult = parseInt(userInput.value) + currentResult; // block scope value
-  outputResult(currentResult, '');
+  const enteredNumber = getUserInput();
+  const intialResult = currentResult;
+  currentResult = currentResult + enteredNumber; // block scope value
+  createAndWriteOutput('+', intialResult, enteredNumber);
+}
+
+function subtract() {
+  const enteredNumber = getUserInput();
+  const intialResult = currentResult;
+  currentResult = currentResult - enteredNumber;
+  createAndWriteOutput('-', intialResult, enteredNumber);
+}
+
+function multiply() {
+  const enteredNumber = getUserInput();
+  const intialResult = currentResult;
+  currentResult = currentResult * enteredNumber;
+  createAndWriteOutput('*', intialResult, enteredNumber);
+}
+
+function divide() {
+  const enteredNumber = getUserInput();
+  const intialResult = currentResult;
+  currentResult = currentResult / enteredNumber;
+  createAndWriteOutput('/', intialResult, enteredNumber);
 }
 
 addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
